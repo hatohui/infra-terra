@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simple Website</title>
+  <meta name="description" content="A simple, responsive, accessible starter website." />
+
+  <style>
+    :root{
+      --bg:#f7f8fb; --card:#fff; --accent:#2563eb; --muted:#6b7280; --radius:12px;
+      --max-width:1100px; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    html,body{height:100%}
+    body{
+      margin:0; background:linear-gradient(180deg,var(--bg),#ffffff);
+      color:#0f172a; display:flex; align-items:center; justify-content:center;
+      padding:2rem;
+    }
+
+    .container{
+      width:100%; max-width:var(--max-width);
+    }
+
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:1rem; margin-bottom:2rem;
+    }
+
+    .brand{display:flex; gap:.75rem; align-items:center; text-decoration:none; color:inherit;}
+    .logo{
+      width:44px; height:44px; display:inline-grid; place-items:center;
+      background:linear-gradient(135deg,var(--accent),#7c3aed); color:#fff; border-radius:10px; font-weight:700;
+      box-shadow:0 6px 18px rgba(37,99,235,.15);
+    }
+
+    nav{display:flex; gap:1rem; align-items:center;}
+    nav a{
+      text-decoration:none; color:var(--muted); font-weight:600; padding:.5rem .75rem; border-radius:8px;
+    }
+    nav a:hover{color:var(--accent); background:rgba(37,99,235,.04)}
+
+    .hero{
+      background:linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.9));
+      border-radius:var(--radius); padding:2rem; display:flex; gap:2rem; align-items:center;
+      box-shadow:0 6px 30px rgba(15,23,42,.06);
+    }
+
+    .hero .left{flex:1}
+    .hero h1{margin:0 0 .5rem; font-size:clamp(1.6rem,3vw,2.4rem)}
+    .hero p{margin:0 0 1rem; color:var(--muted); line-height:1.5}
+    .actions{display:flex; gap:.75rem; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; gap:.5rem; align-items:center; padding:.65rem .9rem; border-radius:10px;
+      border:0; cursor:pointer; font-weight:700; background:var(--accent); color:#fff; text-decoration:none;
+      box-shadow:0 8px 24px rgba(37,99,235,.12)
+    }
+    .btn.ghost{background:transparent; color:var(--accent); border:1px solid rgba(37,99,235,.12)}
+
+    .hero .right{
+      width:320px; max-width:40%; background:var(--card); border-radius:12px; padding:1rem;
+      box-shadow:0 8px 24px rgba(12,17,43,.06);
+    }
+
+    .features{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-top:1.25rem}
+    .card{background:var(--card); padding:1rem; border-radius:12px; box-shadow:0 6px 18px rgba(12,17,43,.04)}
+    footer{margin-top:1.5rem; color:var(--muted); font-size:.9rem; text-align:center}
+    
+    /* Responsive nav toggle */
+    @media (max-width:720px){
+      header{flex-direction:column; align-items:flex-start}
+      .hero{flex-direction:column}
+      .hero .right{width:100%}
+      nav{display:none}
+      .menu-toggle{display:inline-flex}
+    }
+    .menu-toggle{display:none; background:transparent; border:1px solid rgba(15,23,42,.06); padding:.5rem; border-radius:8px; cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <a class="brand" href="#" aria-label="Homepage">
+        <span class="logo" aria-hidden="true">S</span>
+        <div>
+          <div style="font-weight:800">SimpleSite</div>
+          <div style="font-size:.8rem;color:var(--muted)">Starter template</div>
+        </div>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Toggle menu" id="menuToggle">Menu</button>
+    </header>
+
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="left">
+        <h1 id="heroTitle">A clean, responsive starter website</h1>
+        <p>Accessible and minimal HTML/CSS scaffold to get your project up and running quickly. Customize sections and styles to fit your needs.</p>
+
+        <div class="actions">
+          <a class="btn" href="#contact">Get started</a>
+          <a class="btn ghost" href="#features">Learn more</a>
+        </div>
+
+        <div id="features" class="features" style="margin-top:1.25rem">
+          <div class="card">
+            <strong>Responsive</strong>
+            <div style="color:var(--muted); margin-top:.5rem">Works on phones, tablets, and desktops with a single layout.</div>
+          </div>
+          <div class="card">
+            <strong>Accessible</strong>
+            <div style="color:var(--muted); margin-top:.5rem">Semantic HTML and ARIA-friendly attributes for screen readers.</div>
+          </div>
+          <div class="card">
+            <strong>Lightweight</strong>
+            <div style="color:var(--muted); margin-top:.5rem">No build step required — drop in and edit.</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="right" aria-labelledby="sideTitle">
+        <h3 id="sideTitle" style="margin:0 0 .5rem">Quick info</h3>
+        <p style="margin:0 0 1rem; color:var(--muted)">This panel can contain a signup, highlights, or any short content you want to surface.</p>
+
+        <form id="contact" onsubmit="return false;" aria-label="Contact form">
+          <label style="display:block; font-size:.9rem; margin-bottom:.35rem">Email</label>
+          <input type="email" placeholder="you@example.com" required style="width:100%; padding:.6rem; border-radius:8px; border:1px solid #e6edf3; margin-bottom:.6rem" />
+          <button class="btn" style="width:100%">Subscribe</button>
+        </form>
+      </aside>
+    </section>
+
+    <footer>
+      <div style="max-width:800px; margin:1rem auto 0">Made with care • © <span id="year"></span> SimpleSite</div>
+    </footer>
+  </div>
+
+  <script>
+    // Small interactive helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const menuToggle = document.getElementById('menuToggle');
+    const nav = document.querySelector('nav');
+
+    menuToggle?.addEventListener('click', () => {
+      if (!nav) return;
+      const isHidden = getComputedStyle(nav).display === 'none';
+      nav.style.display = isHidden ? 'flex' : 'none';
+    });
+  </script>
+</body>
+</html>
